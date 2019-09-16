@@ -1,0 +1,27 @@
+fa-icon {
+  cursor: pointer;
+}
+
+.page {
+  margin: 3px;
+  padding: 10px;
+  border: solid 1px;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 15px;
+  background-color: #4061e3;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #4871e3;
+  }
+
+  &--active {
+    background-color: #ffffff;
+    color: #4061e3;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}

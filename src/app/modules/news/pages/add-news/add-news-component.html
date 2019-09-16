@@ -1,0 +1,50 @@
+<div class="container d-block">
+  <p>სიახლის დამატება/რედაქტირება</p>
+  <form *ngIf="addNewsForm"
+        [formGroup]="addNewsForm"
+        (ngSubmit)="addNews(addNewsForm.value)"
+  >
+    <label>
+      სიახლის სათაური
+      <input formControlName="title"/>
+      <div
+        class="mt-2 mb-2 error"
+        *ngIf="
+          !addNewsForm.get('title').valid && addNewsForm.get('title').touched
+        "
+      >
+        აუცილებელია ველის შევსება
+      </div>
+    </label>
+    <label>
+      <span class="news-text">სიახლის ტექსტი:</span>
+      <textarea id="content" formControlName="content"></textarea>
+    </label>
+    <div
+      class="mt-2 mb-2 error"
+      *ngIf="
+        !addNewsForm.get('content').valid && addNewsForm.get('content').touched
+      "
+    >
+      აუცილებელია ველის შევსება
+    </div>
+    <label class="mt-3">
+      სურათის ლინკი:
+      <input formControlName="imgUrl"/>
+    </label>
+    <div
+      class="mt-2 mb-2 error"
+      *ngIf="
+        !addNewsForm.get('imgUrl').valid && addNewsForm.get('imgUrl').touched
+      "
+    >
+      აუცილებელია ველის შევსება
+    </div>
+    <input
+      type="submit"
+      class="submit"
+      value="Submit Form"
+      [disabled]="!addNewsForm.valid"
+    />
+  </form>
+</div>

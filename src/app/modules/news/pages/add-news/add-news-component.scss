@@ -1,0 +1,20 @@
+.container {
+  text-align: center;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  textarea {
+    transform: translateY(20px);
+    margin-left: 5px;
+  }
+  .error {
+    color: red;
+  }
+  input {
+    &.submit {
+      width: 120px;
+      margin: 10px auto 0 auto;
+    }
+  }
+}

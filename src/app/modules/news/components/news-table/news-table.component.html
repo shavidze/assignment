@@ -1,0 +1,75 @@
+<router-outlet></router-outlet>
+<div class="col-md-3 mt-4 mb-2 ">
+  <input
+    type="text"
+    placeholder="search"
+    class="form-control"
+    (keyup)="keyUp($event)"
+    [value]="filters.searchKey"
+  />
+</div>
+
+<div class="pl-2 pr-2">
+  <table class="table table-striped border-1">
+    <tr>
+      <th (click)="changeAscending('id')">
+        <span class="mr-5">ID</span>
+        <fa-icon [icon]="getColumnSortIcon('id')"></fa-icon>
+      </th>
+
+      <th (click)="changeAscending('title')">
+        <span class="mr-5">Title</span>
+        <fa-icon [icon]="getColumnSortIcon('title')"></fa-icon>
+      </th>
+      <th (click)="changeAscending('userName')">
+        <span class="mr-5">User Name</span>
+        <fa-icon [icon]="getColumnSortIcon('userName')"></fa-icon>
+      </th>
+      <th (click)="changeAscending('content')">
+        <span class="mr-5">Content</span>
+        <fa-icon [icon]="getColumnSortIcon('content')"></fa-icon>
+      </th>
+
+      <th (click)="changeAscending('imgUrl')">
+        <span class="mr-5">Image Link</span>
+        <fa-icon [icon]="getColumnSortIcon('imgUrl')"></fa-icon>
+      </th>
+    </tr>
+    <tr
+      *ngFor="
+        let item of data
+          | slice
+            : (filters.page - 1) * filters.itemsPerPage
+            : filters.page * filters.itemsPerPage
+      "
+    >
+      <td>{{ item.id }}</td>
+      <td>{{ item.title }}</td>
+      <td>{{ item.userName }}</td>
+      <td>{{ item.content }}</td>
+      <td>{{ item.imgUrl }}</td>
+
+      <td>
+        <a [routerLink]="['edit/', item.id]"
+        >
+          <fa-icon [icon]="icons.edit"></fa-icon
+          >
+        </a>
+      </td>
+      <td>
+        <fa-icon (click)="deleteNews(item.id)" [icon]="icons.delete"></fa-icon>
+      </td>
+    </tr>
+  </table>
+
+  <div class=" d-flex">
+    <span
+      *ngFor="let page of pages"
+      class="page"
+      [ngClass]="{ 'page--active': page === filters.page }"
+      (click)="pageClicked(page)"
+    >
+      {{ page }}
+    </span>
+  </div>
+</div>

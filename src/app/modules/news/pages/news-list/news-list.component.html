@@ -1,0 +1,10 @@
+<button type="button" class="btn btn-link add-news">
+  <a [routerLink]="['add']">სიახლის დამატება</a>
+</button>
+<app-news-table
+  [data]="data$ | async"
+  [filters]="filters$ | async"
+  (onChangeAscending)="changeSort($event)"
+  (onKeyUp)="changeSearchKey($event)"
+  (onPageClicked)="changePage($event)"
+></app-news-table>
